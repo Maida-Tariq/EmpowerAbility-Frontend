@@ -1,6 +1,5 @@
 import React from 'react';
 import Posts from '../../Components/Blogs/Posts';
-import Sidebar from '../../Components/Blogs/Sidebar';
 import {
   BlogsPageContainer,
   PageHeading,
@@ -42,7 +41,6 @@ const Blogs = () => {
 
       <MainContent>
         <Posts />
-        <Sidebar />
       </MainContent>
     </BlogsPageContainer>
   );
