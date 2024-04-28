@@ -7,7 +7,7 @@ const DashboardContainer = styled.div`
   padding: 2rem;
   margin-top: 60px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr; /* One column for the personalized section */
   gap: 2rem;
 `;
 
@@ -15,6 +15,8 @@ const Card = styled.div`
   background-color: #008080; /* Teal color */
   padding: 1.5rem;
   border-radius: 10px;
+  display: flex;
+  align-items: center; 
 `;
 
 const SectionTitle = styled.h2`
@@ -43,37 +45,73 @@ const Button = styled.button`
   }
 `;
 
+// Styled component for the image container
+const ImageContainer = styled.div`
+  margin-left: 10rem; /* Add margin at the right */
+`;
+
+const DashboardImageStyled = styled.img`
+  width: 80%;
+  height: auto;
+`;
+
+// Styled component for the dashboard content
+const DashboardContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  margin-left: 4rem;
+`;
+
+const ParallelContainer = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center; 
+`;
+
+const ParallelSections = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+`;
+
 const Sdashboard = () => {
   return (
     <Layout>
       <DashboardContainer>
         {/* Personalized welcome section */}
         <Card>
-          <SectionTitle>Welcome to Your Dashboard!</SectionTitle>
-          <Subtitle>Take control of your learning and career journey with EmpowerAbility.</Subtitle>
-          <Button>Get Started</Button>
+          
+          <DashboardContent>
+            <SectionTitle>Welcome to Your Dashboard!</SectionTitle>
+            <Subtitle>Take control of your learning and career journey with EmpowerAbility.</Subtitle>
+            <Button>Get Started</Button>
+          </DashboardContent>
+          <ImageContainer>
+            <DashboardImageStyled src="/Images/sdash.png" alt="Dashboard" />
+          </ImageContainer>
         </Card>
 
-        {/* Featured courses section */}
-        <Card>
-          <SectionTitle>Explore Featured Courses</SectionTitle>
-          <Subtitle>Discover courses tailored to your interests and needs.</Subtitle>
-          <Button>Explore Courses</Button>
-        </Card>
+        {/* Parallel sections for community engagement and career opportunities */}
+        <ParallelSections>
+          {/* Community engagement section */}
+          <Card>
+            <ParallelContainer>
+            <SectionTitle>Join the EmpowerAbility Community</SectionTitle>
+            <Subtitle>Connect with like-minded individuals and share your experiences.</Subtitle>
+            <Button>Join Community</Button>
+            </ParallelContainer>
+          </Card>
 
-        {/* Community engagement section */}
-        <Card>
-          <SectionTitle>Join the EmpowerAbility Community</SectionTitle>
-          <Subtitle>Connect with like-minded individuals and share your experiences.</Subtitle>
-          <Button>Join Community</Button>
-        </Card>
-
-        {/* Career opportunities section */}
-        <Card>
-          <SectionTitle>Discover Exciting Job Opportunities</SectionTitle>
-          <Subtitle>Explore job openings from inclusive employers.</Subtitle>
-          <Button>Explore Jobs</Button>
-        </Card>
+          {/* Career opportunities section */}
+          <Card>
+            <ParallelContainer>
+            <SectionTitle>Discover Exciting Job Opportunities</SectionTitle>
+            <Subtitle>Explore job openings from inclusive employers.</Subtitle>
+            <Button>Explore Jobs</Button>
+            </ParallelContainer>
+          </Card>
+        </ParallelSections>
       </DashboardContainer>
     </Layout>
   );
