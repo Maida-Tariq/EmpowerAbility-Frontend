@@ -16,7 +16,7 @@ const Dashboard = () => {
     <DashboardContainer>
       <DashboardContent>
         <DashboardHeader>
-          <h1>Welcome to Your Dashboard</h1>
+          <HeaderText>Welcome to Your Dashboard</HeaderText>
           <p>Here's a quick overview of your courses and students enrolled.</p>
         </DashboardHeader>
         <DashboardStats>
@@ -48,44 +48,53 @@ const Dashboard = () => {
 
 const DashboardContainer = styled.div`
   display: flex;
-  margin: 20px;
+  justify-content: center;
 `;
 
 const DashboardContent = styled.div`
-  flex-grow: 1;
+  width: 90%;
+  max-width: 1200px;
   padding: 20px;
 `;
 
 const DashboardHeader = styled.div`
   margin-bottom: 30px;
-  text-align:center;
+  text-align: center;
+`;
+
+const HeaderText = styled.div`
+  background-color: teal;
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 28px;
+  margin-bottom: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 `;
 
 const DashboardStats = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: space-around;
+  margin-bottom: 30px;
 `;
 
 const StatCard = styled.div`
-  background-color: #f0f0f0;
+  background-color: #fff;
   padding: 20px;
-  border-radius: 8px;
-  flex: 1;
-  margin: 0 10px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
 `;
 
 const StatValue = styled.div`
-  font-size: 24px;
+  font-size: 36px;
   font-weight: bold;
+  color: teal;
 `;
 
 const StatLabel = styled.div`
+  font-size: 18px;
   color: #555;
-  font-size: 14px;
-  text-transform: uppercase;
-  margin-top: 10px;
 `;
 
 const CourseList = styled.div`
@@ -93,24 +102,30 @@ const CourseList = styled.div`
 `;
 
 const CourseListTitle = styled.h2`
-  font-size: 24px;
+  font-size: 28px;
   margin-bottom: 20px;
-  color: #333;
+  text-align: center;
 `;
 
 const CourseItem = styled.div`
-  background-color: #f0f0f0;
+  background-color: #fff;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   display: flex;
   align-items: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 `;
 
 const CourseImage = styled.img`
   width: 120px;
   height: 120px;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-right: 20px;
 `;
 
@@ -119,14 +134,14 @@ const CourseDetails = styled.div`
 `;
 
 const CourseTitle = styled.div`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   color: #333;
 `;
 
 const StudentsEnrolled = styled.div`
   color: #555;
-  font-size: 16px;
+  font-size: 18px;
 `;
 
 export default Dashboard;

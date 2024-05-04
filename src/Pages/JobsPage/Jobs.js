@@ -147,7 +147,7 @@ const JobsPage = () => {
             <h3 onClick={() => console.log(`Clicked on job: ${job.title}`)}>{job.title}</h3>
             <p>{job.company} - {job.location}</p>
             <p>{job.description}</p>
-            <button onClick={() => console.log(`Apply Now for: ${job.title}`)}>Apply Now</button>
+            <button onClick={() => console.log(`Apply Now for: ${job.title}`)}>View</button>
           </Styles.JobCard>
         ))}
       </Styles.JobListings>

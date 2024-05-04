@@ -3,7 +3,6 @@
 import React from 'react';
 import Sheader from './Sheader';
 import Ssidebar from './Ssidebar';
-import Sfooter from './Sfooter';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -21,7 +20,6 @@ const Layout = ({ children }) => {
       <Content>
         <Sheader />
         <div style={{ marginLeft: '250px' }}>{children}</div>
-        <Sfooter />
       </Content>
     </Container>
   );

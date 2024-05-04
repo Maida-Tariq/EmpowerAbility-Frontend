@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FaHome, FaBriefcase, FaUsers, FaBookOpen, FaAngleDown } from 'react-icons/fa'; 
+import { FaHome, FaBriefcase, FaUsers, FaBookOpen, FaAngleDown, FaQuestion  } from 'react-icons/fa'; 
 import { Link } from 'react-router-dom';
 
 const SidebarContainer = styled.div`
@@ -83,7 +83,6 @@ const Sidebar = () => {
         </SidebarLink>
         <DropdownLink isOpen={freelancerOpen}>
           <SidebarLink to="/sjobs">Jobs</SidebarLink>
-          <SidebarLink to="/myjobs">My Jobs</SidebarLink>
           <SidebarLink to="/communication">Communication</SidebarLink>
         </DropdownLink>
         <SidebarLink onClick={toggleStudent}>
@@ -92,11 +91,14 @@ const Sidebar = () => {
         </SidebarLink>
         <DropdownLink isOpen={studentOpen}>
           <SidebarLink to="/scourses">Courses</SidebarLink>
-          <SidebarLink to="/mycourses">My Courses</SidebarLink>
+          <SidebarLink to="/smycourse">My Courses</SidebarLink>
           <SidebarLink to="/communication">Communication</SidebarLink>
         </DropdownLink>
         <SidebarLink to="/sblogs">
           <Icon><FaBookOpen /></Icon> Blogs
+        </SidebarLink>
+        <SidebarLink to="/sblogs">
+          <Icon><FaQuestion /></Icon> Help & Feedback
         </SidebarLink>
       </SidebarNav>
     </SidebarContainer>

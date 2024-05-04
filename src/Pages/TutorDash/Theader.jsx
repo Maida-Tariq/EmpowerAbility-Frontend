@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FaBell } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import UserDropdownMenu from '../../Components/UserDropdownMenu';
+import NotificationIcon from '../../Components/NotificationIcon'; 
 
 const TutorsHeader = () => {
   return (
@@ -31,7 +32,7 @@ const TutorsHeader = () => {
       </Navigation>
       <RightSection>
         <NotificationButton>
-          <FaBell />
+          <NotificationIcon />
         </NotificationButton>
         <UserDropdownMenu />
       </RightSection>
