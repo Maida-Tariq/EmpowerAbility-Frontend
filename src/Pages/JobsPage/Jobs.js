@@ -88,18 +88,6 @@ const JobsPage = () => {
   const uniqueLocations = [...new Set(jobsData.map(job => job.location))];
   const uniqueJobTypes = [...new Set(jobsData.map(job => job.jobType))];
 
-  // Define the becomeInstructor function
-  const becomeInstructor = () => {
-    // Implementation logic for becoming an instructor
-    console.log('Become an Instructor clicked!');
-  };
-
-  const uploadJobs = () => {
-    // Implementation logic for uploading jobs
-    console.log('Upload Jobs clicked!');
-    // You can add navigation logic here if needed
-  };
-
   return (
     <Styles.JobsContainer>
       <Styles.HeadBar>
@@ -147,7 +135,10 @@ const JobsPage = () => {
             <h3 onClick={() => console.log(`Clicked on job: ${job.title}`)}>{job.title}</h3>
             <p>{job.company} - {job.location}</p>
             <p>{job.description}</p>
-            <button onClick={() => console.log(`Apply Now for: ${job.title}`)}>View</button>
+            <Link to={`/jobsdetail/${job.id}`}>
+  <button>View Details</button>
+</Link>
+
           </Styles.JobCard>
         ))}
       </Styles.JobListings>

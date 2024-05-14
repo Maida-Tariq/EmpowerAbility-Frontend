@@ -1,4 +1,3 @@
-// CoursePage.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; 
 import {
@@ -19,6 +18,8 @@ const CoursePage = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedLevel, setSelectedLevel] = useState('');
   const coursesPerPage = 6;
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
 
@@ -26,93 +27,83 @@ const CoursePage = () => {
     setCurrentTestimonialIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
   };
 
+  const dummyData = [
+    { 
+      id: 1, 
+      title: 'Introduction to Adaptive Physical Education', 
+      category: 'Physically Disabled', 
+      level: 'Beginner', 
+      image: '/Images/course-1.jpg' 
+    },
+    { 
+      id: 2, 
+      title: 'American Sign Language Basics', 
+      category: 'Deaf', 
+      level: 'Intermediate', 
+      image: '/Images/course-2.jpg' 
+    },
+    { 
+      id: 3, 
+      title: 'Inclusive Web Design for Accessibility', 
+      category: 'Physically Disabled', 
+      level: 'Advanced', 
+      image: '/Images/course-3.jpg' 
+    },
+    { 
+      id: 4, 
+      title: 'Communication Strategies for the Deaf', 
+      category: 'Deaf', 
+      level: 'Intermediate', 
+      image: '/Images/course-1.jpg' 
+    },
+    { 
+      id: 5, 
+      title: 'Advanced Mobility Solutions', 
+      category: 'Physically Disabled', 
+      level: 'Expert', 
+      image: '/Images/course-2.jpg' 
+    },
+    { 
+      id: 6, 
+      title: 'Mastering Deaf Culture and Community', 
+      category: 'Deaf', 
+      level: 'Expert', 
+      image: '/Images/course-3.jpg' 
+    },
+  ];
+  
+  const dummyTestimonials = [
+    { 
+      id: 1, 
+      name: 'Emily Rodriguez', 
+      image: '/Images/people.jpg', 
+      content: 'The adaptive physical education course empowered me to stay active and live a healthier life. Truly life-changing!' 
+    },
+    { 
+      id: 2, 
+      name: 'John Smith', 
+      image: '/Images/people.jpg', 
+      content: 'I found the American Sign Language Basics course incredibly useful. It opened up new opportunities for me to communicate effectively with the deaf community.' 
+    },
+    { 
+      id: 3, 
+      name: 'Sophia Johnson', 
+      image: '/Images/people.jpg', 
+      content: 'Mastering Deaf Culture and Community course helped me gain a deeper understanding and appreciation for the deaf community. Its been an eye-opening experience.'
+    },
+    // Add more testimonial objects as needed
+  ];
+  
+  
+
   const prevTestimonial = () => {
     setCurrentTestimonialIndex(
       (prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length
     );
   };
-  const enrollCourse = (courseId) => {
-    console.log(`Enrolling in course with ID: ${courseId}`);
-  };
-
-  const becomeInstructor = () => {
-    console.log("Become an instructor button clicked");
-  };
 
   useEffect(() => {
-    const dummyData = [
-      { 
-        id: 1, 
-        title: 'Introduction to Adaptive Physical Education', 
-        category: 'Physically Disabled', 
-        level: 'Beginner', 
-        image: '/Images/course-1.jpg' 
-      },
-      { 
-        id: 2, 
-        title: 'American Sign Language Basics', 
-        category: 'Deaf', 
-        level: 'Intermediate', 
-        image: '/Images/course-2.jpg' 
-      },
-      { 
-        id: 3, 
-        title: 'Inclusive Web Design for Accessibility', 
-        category: 'Physically Disabled', 
-        level: 'Advanced', 
-        image: '/Images/course-1.jpg' 
-      },
-      { 
-        id: 4, 
-        title: 'Communication Strategies for the Deaf', 
-        category: 'Deaf', 
-        level: 'Intermediate', 
-        image: '/Images/course-3.jpg' 
-      },
-      { 
-        id: 5, 
-        title: 'Advanced Mobility Solutions', 
-        category: 'Physically Disabled', 
-        level: 'Expert', 
-        image: '/Images/course-1.jpg' 
-      },
-      { 
-        id: 6, 
-        title: 'Mastering Deaf Culture and Community', 
-        category: 'Deaf', 
-        level: 'Expert', 
-        image: '/Images/course-2.jpg' 
-      },
-    ];
-    
-
-    const dummyTestimonials = [
-      { 
-        id: 1, 
-        name: 'Emily Rodriguez', 
-        image: '/Images/people.jpg', 
-        content: 'The adaptive physical education course empowered me to stay active and live a healthier life. Truly life-changing!' 
-      },
-      { 
-        id: 2, 
-        name: 'Samuel Chen', 
-        image: '/Images/people.jpg', 
-        content: 'Learning American Sign Language opened up new ways for me to communicate and connect with others in the deaf community.' 
-      },
-      { 
-        id: 3, 
-        name: 'Maria Fernandez', 
-        image: '/Images/people.jpg', 
-        content: 'The inclusive web design course provided valuable insights on creating accessible digital experiences. A must for web developers!' 
-      },
-      { 
-        id: 4, 
-        name: 'Ahmed Khan', 
-        image: '/Images/people.jpg', 
-        content: 'I gained advanced mobility skills that significantly improved my independence and confidence in daily life.' 
-      },
-    ];
-    
+    // Dummy data setup
 
     setCourses(dummyData);
     setTestimonials(dummyTestimonials);
@@ -120,12 +111,12 @@ const CoursePage = () => {
 
   const indexOfLastCourse = currentPage * coursesPerPage;
   const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
-  const filteredCourses = courses.filter(
-    (course) =>
-      course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      course.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      course.level.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredCourses = courses.filter((course) => {
+    const titleMatch = course.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const categoryMatch = selectedCategory ? course.category === selectedCategory : true;
+    const levelMatch = selectedLevel ? course.level === selectedLevel : true;
+    return titleMatch && categoryMatch && levelMatch;
+  });
   const currentCourses = filteredCourses.slice(indexOfFirstCourse, indexOfLastCourse);
 
   const paginate = (pageNumber) => {
@@ -151,14 +142,23 @@ const CoursePage = () => {
           />
           <div>
             <label>Category:</label>
-            <select>
-              <option value="physically disabled">physically disabled</option>
-              <option value="deaf">deaf</option>
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
+              <option value="">All Categories</option>
+              <option value="Physically Disabled">Physically Disabled</option>
+              <option value="Deaf">Deaf</option>
             </select>
             <label>Level:</label>
-            <select>
-              <option value="beginner">Beginner</option>
-              <option value="expert">Expert</option>
+            <select
+              value={selectedLevel}
+              onChange={(e) => setSelectedLevel(e.target.value)}
+            >
+              <option value="">All Levels</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Expert">Expert</option>
             </select>
           </div>
         </SearchSection>

@@ -58,7 +58,7 @@ const App = () => {
         <Route path="/contact" element={<ContactPageWithHeaderFooter />} />
         <Route path="/login" element={<LoginPageWithoutHeaderFooter />} />
         <Route path="/reg" element={<RegWithoutHeaderFooter />} />
-        <Route path="/jobsdetail" element={<JobsDetailWithHeaderFooter />} />
+        <Route path="/jobsdetail/:id" element={<JobsDetailWithHeaderFooter />} />
         <Route path="/jobs" element={<JobsPageWithHeaderFooter />} />
         <Route path="/blogs" element={<BlogsPageWithHeaderFooter />} />
         <Route path="/courses" element={<CoursesPageWithHeaderFooter />} />
@@ -126,7 +126,7 @@ const JobsPageWithHeaderFooter = () => (
 const JobsDetailWithHeaderFooter = () => (
   <>
     <Header />
-    <JobsPage />
+    <JobsDetail />
     <Footer />
   </>
 );
